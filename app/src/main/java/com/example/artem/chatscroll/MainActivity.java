@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         Collections.reverse(data);
         final MyAdapter adapter = new MyAdapter(data, this);
         rvMessages.setAdapter(adapter);
-        //rvMessages.scrollToPosition(data.size() - 1);
+        rvMessages.scrollToPosition(data.size() - 1);
 
         /**
          * scroll listener to do the magic
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 //get view by that position
                 View itemView = manager.findViewByPosition(viewPosition);
                 /**
-                 * calculate distance between our last view (by getting its bottom coordinate)
+                 * calculate the distance between our last view (by getting its bottom coordinate)
                  * and our our bottom view which allows to send messages (by getting its top)
                  * that value includes item_message.xml root layout's margins
                  */
@@ -105,13 +105,6 @@ public class MainActivity extends AppCompatActivity {
                         if (difference > (itemView.getHeight() - icon.getHeight())) {
                             difference = itemView.getHeight() - icon.getHeight();
                         }
-/*                        if (dy > 0) {
-                            if (!iconAtBottom(icon)) {
-                                icon.setTranslationY(-difference);
-                            }
-                        } else {
-                            icon.setTranslationY(-difference);
-                        }*/
                         //change icon Y position
                         icon.setTranslationY(-difference);
                     } else if (viewPosition != lastViewPosition) {
@@ -132,10 +125,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    private boolean iconAtBottom(View v) {
-        return v.getTranslationY() == 0;
     }
 
     /**
